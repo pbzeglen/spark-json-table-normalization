@@ -33,10 +33,10 @@ Normalizing the JSONs creates dozens of tables, and crafting sql against them is
 from proper_json_normalize import generate_query
 from pyspark.sql import functions as F
 
-data_prefix="fda_compression"
+data_prefix="all_tables_start_with_this_string"
 query = generate_query(
         data_prefix=data_prefix, 
-        cols=[f"{data_prefix}_distinct_id", f"{data_prefix}_patient_drug_openfda_brand_name"]
+        cols=[f"{data_prefix}_distinct_id", f"{data_prefix}_object_and_column_name"]
         )
 print(query)
 spark.sql(

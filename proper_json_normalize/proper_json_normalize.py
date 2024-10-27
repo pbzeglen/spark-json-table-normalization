@@ -14,22 +14,13 @@ def clean_up_alligators(text):
         return clean_up_alligators(newtext)
 
 
-def pass_down_prefix(lst, sep, dropLevelNames):
-    if len(lst)>1 and not dropLevelNames:
-        return [lst[0]+sep+lst[1]]+lst[2:]
-    elif len(lst)>1:
-        return lst[1:]
-    else:
-        return lst
-
-
 def flatten_structs(data, sep, dropLevelNames):
     struct_columns = [(column_name, column_dtype) for column_name, column_dtype in data.dtypes if column_dtype.startswith("struct")]
     for column_flatten, column_dtype in struct_columns:
         for column_to_shorten in [column[:column.find(":")] for column in clean_up_alligators(column_dtype[len("struct<"):-1]).split(",")]:
             data = data.withColumn((column_flatten+sep if not dropLevelNames else "") + column_to_shorten, col(column_flatten+'.'+column_to_shorten))
         data = data.drop(column_flatten)
-    return data, [s for s,c in struct_columns]
+    return data, [s for s, c in struct_columns]
 
 
 def add_index(data, row_number_name):
