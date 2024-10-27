@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Compressing 5 TB of jsons into 5 GB through data normalization
 # MAGIC
-# MAGIC It's simple: JSONs take up a lot of space. The nested format is very ineffecient with redundant value entries. Any data engineer wh has written custom code to clean up even the easiest files using progressive explode's and distinct's knows this is a cumbersome and ugly process. Shared here is a module based in [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) that iteratively explodes and normalizes a df of structured data across multiple tables in Hive metastore (call [setCurrentCatalog](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.Catalog.setCurrentCatalog.html) or [setCurrentDatabase](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.Catalog.setCurrentDatabase.html) to use Unity Catalog instead) no matter the underlying schema.
+# MAGIC It's simple: JSONs take up a lot of space. The nested format is very inefficient with redundant value entries. Any data engineer who has written custom code to clean up even the easiest files using progressive explode's and distinct's knows this is a cumbersome and ugly process. Shared here is a module based in [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) that iteratively explodes and normalizes a df of structured data across multiple tables in Hive metastore (call [setCurrentCatalog](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.Catalog.setCurrentCatalog.html) or [setCurrentDatabase](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.Catalog.setCurrentDatabase.html) to use Unity Catalog instead) no matter the underlying schema.
 # MAGIC
 # MAGIC Please understand the functionality extends beyond Pandas' [json_normalize](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html). That method returns one dataframe, whereas by breaking the data into multiple tables based on the objects within a json, proper_json_normalize allows for only distinct values to be stored and drastically cuts down costs.
 # MAGIC
@@ -129,7 +129,7 @@ df.withColumn(
 import time
 from proper_json_normalize import proper_json_normalize
 
-data_prefix="fda"
+data_prefix="fda_compression"
 t = time.perf_counter()
 final_tables = proper_json_normalize(
   df=df, 
