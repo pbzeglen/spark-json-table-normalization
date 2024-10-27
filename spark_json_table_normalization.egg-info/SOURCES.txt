@@ -1,0 +1,8 @@
+license
+setup.py
+proper_json_normalize/__init__.py
+proper_json_normalize/proper_json_normalize.py
+spark_json_table_normalization.egg-info/PKG-INFO
+spark_json_table_normalization.egg-info/SOURCES.txt
+spark_json_table_normalization.egg-info/dependency_links.txt
+spark_json_table_normalization.egg-info/top_level.txt

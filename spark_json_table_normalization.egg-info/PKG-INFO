@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: spark-json-table-normalization
+Version: 0.0.1
+Summary: Package to properly normalize jsons into multiple tables for fast data processing
+Author: Peter Zeglen
+Author-email: pbzeglen@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: license
+
+# Example Package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
